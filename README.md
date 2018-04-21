@@ -1,4 +1,5 @@
 # MoniteredStorage.js
+
 > JavaScript storage library that moniters when it has been changed. Inspired by [Immutable.js](https://facebook.github.io/immutable-js/).
 
 This library was originally written as the backend for some custom web component style work, where only elements that have updated are rendered. Each storage can hold any array or object and checks writes to see if that structure has updated.
@@ -8,11 +9,13 @@ This library was originally written as the backend for some custom web component
 ### Setup
 
 Client side:
+
 ```html
 <script src="./m-storage.js"></script>
 ```
 
 Otherwise:
+
 ```js
 const MoniteredStorage = require("m-storage.js");
 ```
@@ -24,8 +27,8 @@ MoniteredStorage takes an array, object, or another MoniteredStorage as its para
 ```js
 const state = new MoniteredStorage({
     a: 7,
-    b: [ 0, 1, 2 ],
-    c: new MoniteredStorage()
+    b: [0, 1, 2],
+    c: new MoniteredStorage(),
 });
 const copy = new MoniteredStorage(state);
 const clone = copy.clone();
@@ -49,9 +52,9 @@ MoniteredStorage uses `.get(key|index)` and `.set(key|index, value)` to access a
 ```js
 state.get("apples"); // 7
 state.set("apples", 7);
-state.changed === false
+state.changed === false;
 state.set("apples", 100);
-state.changed === true
+state.changed === true;
 ```
 
 Both get and set can be used to reach deeper parts of the data by passing an array as a key to `.getIn()` or `.setIn()`.
@@ -62,20 +65,20 @@ const state = new MoniteredStorage({
         {
             name: {
                 first: "Frank",
-                last: "Sammich"
+                last: "Sammich",
             },
             city: "Philadelphia",
-            married: false
+            married: false,
         },
         {
             name: {
                 first: "Carlos",
-                last: "Jawn"
+                last: "Jawn",
             },
             city: "Philadelphia",
-            married: false
-        }
-    ]
+            married: false,
+        },
+    ],
 });
 state.setIn(["people", 0, "name", "last"], "Jawn");
 state.setIn(["people", 0, "married"], true);
